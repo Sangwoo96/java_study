@@ -56,7 +56,7 @@
 
 ## 1-4 JVM 구성요소
 
-![1-2](https://user-images.githubusercontent.com/55661631/103167039-10790800-486b-11eb-9912-f4e076da30a1.PNG)
+![1-2](https://user-images.githubusercontent.com/55661631/103167039-10790800-486b-11eb-9912-f4e076da30a1.PNG)  
 출처 : https://medium.com/webeveloper/jvm-java-virtual-machine-architecture-94b914e93d86
 
 ### **클래스 로더** 
