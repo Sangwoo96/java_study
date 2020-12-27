@@ -1,2 +1,3 @@
-# java_study
-자바 공부 정리
+# live-study
+* 1주차
+  - JVM이란?
