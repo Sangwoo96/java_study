@@ -57,6 +57,7 @@
 ## 1-4 JVM 구성요소
 
 ![1-2](https://user-images.githubusercontent.com/55661631/103167039-10790800-486b-11eb-9912-f4e076da30a1.PNG)
+출처 : https://medium.com/webeveloper/jvm-java-virtual-machine-architecture-94b914e93d86
 
 ### **클래스 로더** 
 클래스 로더는 로딩, 링크, 초기화 순서로 진행됩니다. 클래스 로더라는 이름 그대로 클래스 파일을 적재(Runtime Data Area) 하는 역할을 한다. 즉, ```Event.java``` 자바 소스 파일을 컴파일 하면 바이트 코드(```.class 파일```)이 생성되며 이런 파일들을 모아, 클래스 로더가 메모리에 적재시킨다.
