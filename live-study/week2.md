@@ -211,7 +211,7 @@ class Test {}
     ```
     - 위의 실행 결과를 보면 엉뚱하게도 0이 나오지 않는다. 이유는 int 값을 손실 없이 float 타입 `부호(1비트) + 지수(8비트) + 가수(23비트)`의 값으로 변환할 수 있으려면 가수 23비트로 표현 가능한 값이어야 한다. 1234567890은 23비트로 표현할 수 없기 때문에 근사치로 변환된다. 따라서 아래와 같이 double 타입 `부호(1비트) + 지수(11비트) + 가수(52비트)`을 사용하여 변환하여야 손실 없이 복원된다.
     ```java
-    public class Example5{
+    public class Example6{
         public static void main(String[] args){
             int num1 = 1234567890;
             int num2 = 1234567890;
@@ -239,7 +239,7 @@ class Test {}
 
 ## 2-7 1차 및 2차 배열 선언하기
 ```java
-public class Example6{
+public class Example7{
         public static void main(String[] args){
             //1차원 배열
             int[] oneDimensionArrayEx1 = {1, 2, 3, 4, 5};
@@ -273,7 +273,7 @@ public class Example6{
 * 타입 추론에 대해서는 아래와 같이 대표적으로 **제네릭**에서 볼 수 있다.
 
     ```java
-    public class Example7 {
+    public class Example8{
         public static void main(String[] args) {
             HashMap<String, Integer> hashMap = new HashMap<>();
         }   
@@ -285,7 +285,7 @@ public class Example6{
 * Var이란?
 
     ```java
-    public class Example8 {
+    public class Example9{
             public static void main(String[] args) {
                 var str = "Hello";
                 var num = 1;
