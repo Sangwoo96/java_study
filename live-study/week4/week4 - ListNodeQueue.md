@@ -76,3 +76,5 @@ class ListNodeQueueTest {
 <br/>
 
 # Github
+* https://github.com/highright96/java_study/blob/main/live-study/week4/LinkedList/src/main/java/ListNodeQueue.java
+* https://github.com/highright96/java_study/blob/main/live-study/week4/LinkedList/src/test/java/ListNodeQueueTest.java
