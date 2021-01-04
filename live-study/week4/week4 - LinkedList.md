@@ -22,7 +22,7 @@
 
 <br/>
 
-### LinkedList 코드
+### 코드
 ```java
 public class ListNode {
     private int data;
