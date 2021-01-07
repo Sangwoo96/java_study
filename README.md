@@ -17,3 +17,5 @@
 * 5주차
   * [클래스](https://github.com/highright96/java_study/blob/main/live-study/week5/week5.md)
   * [BinaryTree](https://github.com/highright96/java_study/blob/main/live-study/week5/week5%20-%20BinaryTree.md)
+* 6주차
+  * [상속](https://github.com/highright96/java-study/blob/main/live-study/week6/week6.md)
