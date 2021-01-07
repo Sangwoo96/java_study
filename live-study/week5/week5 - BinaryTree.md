@@ -150,7 +150,8 @@ class BinaryTreeTest {
 <br/>
 
 # Github
-
+* https://github.com/highright96/java_study/tree/main/live-study/week5/BinaryTree/src/main/java
+* https://github.com/highright96/java_study/blob/main/live-study/week5/BinaryTree/src/test/java/BinaryTreeTest.java
 
 <br/>
 
