@@ -19,3 +19,5 @@
   * [BinaryTree](https://github.com/highright96/java_study/blob/main/live-study/week5/week5%20-%20BinaryTree.md)
 * 6주차
   * [상속](https://github.com/highright96/java-study/blob/main/live-study/week6/week6.md)
+* 7주차
+  * [패키지](https://github.com/highright96/java-study/blob/main/live-study/week7/week7.md)
