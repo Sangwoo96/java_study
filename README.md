@@ -23,3 +23,5 @@
   * [패키지](https://github.com/highright96/java-study/blob/main/live-study/week7/week7.md)
 * 8주차
   * [인터페이스](https://github.com/highright96/java-study/blob/main/live-study/week8/week8.md) 
+* 9주차
+  * [예외 처리](https://github.com/highright96/java-study/blob/main/live-study/week9/week9.md)
