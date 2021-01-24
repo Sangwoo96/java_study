@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
 
         //Thread 클래스를 상속받은 Task1 객체를 매개값으로 쓰레드 생성자 호출
-        Thread thread1 = new Thread(new Task1());
+        Thread thread1 = new Task1();
         
         //Runnable 인터페이스를 구현한 Task2 객체를 매개값으로 쓰레드 생성자를 호출
         Thread thread2 = new Thread(new Task2());
@@ -13,7 +13,7 @@ public class Main {
             public void run() {
                 //쓰레드가 실행할 코드
                 for(int i = 0; i<100; i++){
-                    System.out.print("3");
+                    System.out.println(Thread.currentThread().getName());
                 }
             }
         });
@@ -22,7 +22,7 @@ public class Main {
         Thread thread4 = new Thread(()->{
             //쓰레드가 실행할 코드
             for(int i = 0; i<100; i++){
-                System.out.print("4");
+                System.out.println(Thread.currentThread().getName());
             }
         });
 
@@ -39,9 +39,11 @@ class Task1 extends Thread{
     public void run() {
         //쓰레드가 실행할 코드
         for(int i = 0; i<100; i++){
-            System.out.print("1");
+            System.out.println(Thread.currentThread().getName());
         }
     }
+
+
 }
 
 class Task2 implements Runnable{
@@ -49,7 +51,7 @@ class Task2 implements Runnable{
     public void run() {
         //쓰레드가 실행할 코드
         for(int i = 0; i<100; i++){
-            System.out.print("2");
+            System.out.println(Thread.currentThread().getName());
         }
     }
 }
