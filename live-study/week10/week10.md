@@ -16,6 +16,7 @@
 * 데몬 스레드
 * 동기화
 * 데드락
+* 스레드풀
 
 <br/>
 
@@ -819,7 +820,7 @@ Thread-1 2000
 
 <br/>
 
-### **2. wait()와 notify()**
+### **2. wait()와 notify()를 이용한 동기화**
 
 synchronized로 동기화하면 공유 자원을 보호할 수 있지만 특정 스레드가 객체의 락을 가진 상태로 오랜시간을 보내지 않게 하는것도 중요하다.
 
@@ -829,16 +830,21 @@ synchronized로 동기화하면 공유 자원을 보호할 수 있지만 특정 
 
 동기화된 임계 영역의 코드를 수행하다가 작업을 더 이상 진행할 상황이 아니라면, wait()를 호출하여 스레드가 락을 반납하고 기다리게 한다. 이때 다른 스레드가 락을 얻어 해당 객체에 대한 작업을 수행할 수 있게 된다. 이후 작업을 다시 진행할 수 있는 상황이 되면 notify()를 호출해서, 작업을 중단했던 스레드가 다시 락을 얻어 작업을 진행할 수 있다.
 
+<br/>
+
 **wait(), notify(), notifyAll()**
 - Object에 정의 되어 있는 메소드이다.
 - 동기화 블록(synchronized블록)내에서만 사용할 수 있다. 
 - 보다 효율적인 동기화를 가능하게 한다.
 
-wait() : 쓰레드가 락을 반납하고 기다리게한다.
+`wait()` : 쓰레드가 락을 반납하고 기다리게한다.
 
-notify() : 객체의 대기실에서 대기중인 모든 쓰레드 중 임의의 쓰레드에게 lock을 얻을 수 있는 상태로 바꿔준다.
+`notify()` : 객체의 대기실에서 대기중인 모든 쓰레드 중 임의의 쓰레드에게 lock을 얻을 수 있는 상태로 바꿔준다.
 
-notifyAll() : 기다리고 있는 모든 객체에게 통지하여 lock을 얻을 수 있는 상태로 바꿔줍니다. notifyAll()이 호출된 객체의 waiting pool에 대기중인 쓰레드만 해당된다.
+`notifyAll()` : 기다리고 있는 모든 객체에게 통지하여 lock을 얻을 수 있는 상태로 바꿔줍니다. notifyAll()이 호출된 객체의 waiting pool에 대기중인 쓰레드만 해당된다.
+
+<br/>
+
 
 아래의 코드는 두 스레드의 작업을 wait(), notify() 메소드를 사용해 교대로 호출하는 프로그램이다.
 
@@ -919,3 +925,132 @@ Worker2 작업 중
 ```
 
 만약 notify()와 wait()로 순서를 임의로 정하지 않았다면 일정 시간동안 method1과 method2가 일정 시간동안 번갈아가면서 출력될것이다.
+
+위의 코드는 for문을 한번 돌때마다 notify()와 wait() 메소드를 적절히 사용하여 두 스레드가 번갈아가며 실행되는 것이다.
+
+<br/>
+
+# 💡 10-7 데드락(교착상태, DeadLock)
+
+## **데드락(교착상태)란?**
+
+2개 이상의 프로세스가 다른 프로세스의 작업이 끝나기만을 기다리며 작업을 더 이상 진행하지 못하는 상태를 데드락(교착상태)라고 한다.
+
+아래의 그림을 보면 이해하기 더 쉬울 것이다.
+
+![ded](https://user-images.githubusercontent.com/55661631/105985056-50d3dc00-60de-11eb-8790-f79bef729eb0.PNG)
+
+프로세스 1은 자원 1을 점유하고 있는 상태에서 자원 2를 기다리고 있다.  
+프로세스 2는 자원 2를 점유하고 있는 상태에서 자원 1을 기다리고 있다.  
+하지만 프로세스 1은 자원 2가 필요한 상황에서 자원 1을 빌려줄 수 있는 상황이 아니고,  
+프로세스 2또한 자원 1이 필요한 상태에서 자원 2를 빌려줄 수 없는 상황인 것이다.  
+
+즉 서로 불가능한 일이 끝나도록 계속 기다리는 상황을 이야기하는 것이다.
+
+<br/>
+
+# 💡 10-8 스레드풀
+
+## **기존 스레드의 문제점**
+
+* 병렬 작업의 폭증으로 인한 스레드의 폭증이 일어나 성능이 저하된다.
+* 스레드를 생성하는데 드는 비용이 많다.
+* 스레드 생성과 스케줄링으로 인해 CPU가 바빠지고, 메모리 사용량이 늘어난다.
+
+<br/>
+
+## **해결방법**
+
+기존 스레드의 문제점을 해결하기 위해 자바는 **스레드풀**을 생성하고 사용할 수 있도록 한다.
+
+**스레드풀**은 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고 작업 큐에 들어오는 작업들을 하나씩 스레드가 맡아 처리한다.
+
+작업 처리가 끝난 스레드는 다시 작업 큐에서 새로운 작업을 가져와 처리한다. 그렇기 때문에 작업 처리 요청이 폭증되어도 스레드의 전체 개수가 늘어나지 않으며, 작업을하다 스레드를 생성할 일이 없어 성능이 급격하게 저하되지 않는다.
+
+<br/>
+
+## **스레드풀 생성**
+
+### **1. newCacheThreadPool()**
+
+* 초기 스레드 개수와 코어 스레드 개수는 0개이다.
+* 스레드 개수보다 작업 개수가 많으면 새 스레드를 생성시켜 작업을 처리한다.
+* 이론적으로는 int 값이 가질 수 있는 최대값만큼 스레드가 추갇되지만, 운영체제의 성능과 상황에 따라 달라진다.
+* 60초 동운 추가된 스레드가 아무 작업을 하지 않으면 종료하고 풀에서 제거한다.
+
+<br/>
+
+### **2. newFixedThreadPool(int nThreads)**
+
+* 초기 스레드 개수와 코어 스레드 개수는 nThreads 개이다.
+* 스레드 개수보다 작업 개수가 많으면 새 스레드를 생성시켜 작업을 처리한다.
+* 최대 스레드 개수는 매개값으로 준 nThreads이다.
+* 이 스레드풀은 스레드가 작업을 처리하지 않고 놀고 있어도 종료시키지 않는다.
+
+<br/>
+
+```java
+public class ThreadPool {
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(4); //스레드개수 4개
+
+
+        for(int i=0; i<10; i++){
+
+            //작업 정의
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    // 스레드 총 개수 및 작업 스레드 이름 출력
+                    ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executorService;
+                    int poolSize = threadPoolExecutor.getPoolSize();  // poolSize 총 스레드 개수
+                    String threadName = Thread.currentThread().getName();
+                    System.out.println("[총 스레드 개수 : " + poolSize + "] 작업 스레드 이름 : " + threadName);
+
+                }
+            };
+
+            //작업 처리 요청
+            executorService.submit(runnable);
+
+            Thread.sleep(10);
+        }
+        
+        //스레드풀 종료
+        executorService.shutdown();
+    }
+}
+```
+
+결과화면
+```
+[총 스레드 개수 : 3] 작업 스레드 이름 : pool-1-thread-3
+[총 스레드 개수 : 2] 작업 스레드 이름 : pool-1-thread-2
+[총 스레드 개수 : 1] 작업 스레드 이름 : pool-1-thread-1
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-4
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-3
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-1
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-2
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-4
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-3
+[총 스레드 개수 : 4] 작업 스레드 이름 : pool-1-thread-1
+```
+
+추가로 직접 생성자를 호출하게 되면 스레드풀의 세부 설정을 할 수 있다.
+
+```java
+ExecutorService ex = new ThreadPoolExecutor(
+    3, //코어 스레드 개수
+    100,// 최대 스레드 개수
+    120L,// 스레드 놀고 있는 시간
+    TimeUnit.SECONDS,//시간 단위
+    new SynchronousQueue<>()  // 작업큐
+);
+```
+
+<br/>
+
+# 참고
+* 이것이 자바다 - 신용권
+* https://catch-me-java.tistory.com/47
+* https://parkadd.tistory.com/48
