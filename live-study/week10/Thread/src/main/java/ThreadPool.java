@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ThreadPool {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(4); //스레드개수 4개
-        
+
         for(int i=0; i<10; i++){
 
             //작업 정의
