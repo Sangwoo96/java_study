@@ -325,7 +325,16 @@ if(doctor == Job.DOCTOR){
 열거형의 모든 상수를 배열에 담아 반환한다.
 
 ```java
-Job[] arr = Job.values();
+Job[] jobs = Job.values();
+for(var i : jobs){
+    System.out.println(i.name());
+}
+```
+
+```
+DOCTOR
+NURSE
+TEACHER
 ```
 
 <br/>
@@ -344,6 +353,53 @@ if(job == Job.DOCTOR){
 
 ```
 동일합니다.
+```
+
+<br/>
+
+## **ordinal()**
+
+상수가 정의된 순서를 반환한다.
+
+```java
+enum Fruit{
+    APPLE, BANANA, ORANGE;
+}
+
+public class Ordinal {
+    public static void main(String[] args) {
+        Fruit apple = Fruit.APPLE;
+        Fruit banana = Fruit.BANANA;
+        Fruit orange = Fruit.ORANGE;
+
+        System.out.println(apple.ordinal());
+        System.out.println(banana.ordinal());
+        System.out.println(orange.ordinal());
+    }
+```
+
+```
+0
+1
+2
+```
+
+**ordianl은 Enum 내부에서 사용하기 위해 만든 것이지, 아래와 같이 개발자들이 사용하는 것은 안티패턴이다.**
+
+```java
+if(apple.ordinal() == 0){
+    System.out.println("사과가 맞습니다.");
+}else if(apple.ordinal() != 0){
+    System.out.println("사과가 아닙니다.");
+}
+```
+
+이유는 아래와 같이 다른 개발자에 의해 Enum의 정의 순서가 바뀌면, apple.ordinal()은 1이 되어 틀린 로직이 되기 때문이다.
+
+```java
+enum Fruit{
+    KIWI, APPLE, BANANA, ORANGE;
+}
 ```
 
 <br/>
@@ -383,6 +439,25 @@ java.lang 에 포함된 Enum 클래스는 모든 자바 열거형의 조상이�
 * tread-safe하지 않다. 동기식으로 사용하려면 Collections.synchronizedMap을 사용하거나, 외부에서 동기화를 구현해야한다.
 
 * 모든 메서드는 arithmetic bitwise operation을 사용하기 때문에 모든 기본 연산의 시간 복잡도가 O(1)이다.
+
+<br/>
+
+## **사용하는 이유**
+
+특정 열거형의 모든 상수를 리스트화 시킬 일이 생길 수 도 있다. 그 때 EnumSet을 사용하지 않고 구현하려면 매우 번거롭기 때문이다.
+
+아래의 코드와 같이 단 한줄로 모든 상수를 리스트화 시킬 수 있다.
+
+```java
+// HashSet을 사용
+Set<Color> enumSet = new HashSet<>();
+enumSet.add(Color.RED);
+enumSet.add(Color.BLUE);
+...
+
+//EnumSet을 사용한 경우
+EnumSet<Fruit> enumSet = EnumSet.allOf(Fruit.class);
+```
 
 <br/>
 
@@ -430,9 +505,11 @@ true
 
 <br/>
 
+# 💡 (추가)실무에서의 활용
+
+실무에서 Enum을 어떻게 활용하는지 정리된 글이다. 나중에 다시 읽어보자.
 ### **[Java Enum 활용기](https://woowabros.github.io/tools/2017/07/10/java-enum-uses.html)**
 
-실무에서 Enum을 어떻게 활용하는지 정리된 글이다.
 
 <br/>
 
