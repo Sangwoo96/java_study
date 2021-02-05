@@ -1,4 +1,5 @@
-# live-study
+# 라이브 스터디
+😃 백기선님의 [live-study](https://www.youtube.com/results?search_query=%EB%B0%B1%EA%B8%B0%EC%84%A0)를 진행하며 작성한 글입니다.
 * 1주차
   * [JVM](https://github.com/highright96/java_study/blob/main/live-study/week1/week1.md)
 * 2주차
