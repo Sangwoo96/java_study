@@ -30,3 +30,5 @@
   * [멀티스레드 프로그래밍](https://github.com/highright96/java-study/blob/main/live-study/week10/week10.md)
 * 11주차
   * [Enum](https://github.com/highright96/java-study/blob/main/live-study/week11/week11.md)
+* 12주차
+  * [Annotation](https://github.com/highright96/java-study/blob/main/live-study/week12/week12.md)
