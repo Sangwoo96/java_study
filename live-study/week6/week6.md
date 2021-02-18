@@ -26,6 +26,7 @@
 
 * 상속은 이미 잘 개발된 클래스를 재사용해서 새로운 클래스를 만들기 때문에 **코드의 중복**을 줄여준다.  
 * 상속을 이용하면 **클래스의 수정을 최소화**시킬 수 있다.
+    * 예를 들면 어떤 상위 클래스를 상속받은 하위 클래스가 여러개 있을때 공통적인 부분을 수정하려면 상위 클래스만 수정하면 되지만, 상속을 받지 않았을 경우에는 모든 하위 클래스 코드를 수정해야한다. 
 
 <br/>
 
@@ -33,65 +34,55 @@
 
 자바에서 상속의 구현은 다음과 같다. 새로 작성하고자 하는 클래스 이름 뒤에 상속받고자 하는 클래스의 이름을 키워드 `extends`와 함께 작성해주면 된다. 
 
+**Car.java**
 ```java
-public class School {
-    String schoolName;
-    String location;
+public class Car {
+    public int wheel;
+    public String color;
 
-    School(String schoolName, String location){
-        this.schoolName = schoolName;
-        this.location = location;
+    public Car(int wheel, String color) {
+        this.wheel = wheel;
+        this.color = color;
     }
 
-    public String getSchoolName(){ 
-        return schoolName;
+    public void drive(){
+        System.out.println("[Car] --- drive");
     }
-}
-```
-```java
-public class Teacher extends School{
-    String teacherName;
-    int age;
 
-    Teacher(School school, String teacherName, int age) {
-        super(school.schoolName, school.location);
-        this.teacherName = teacherName;
-        this. age = age;
-    }
-}
-```
-```java
-public class Student extends School{
-    String studentName;
-    int age;
-
-    Student(School school, String studentName, int age) {
-        super(school.schoolName, school.location);
-        this.studentName = studentName;
-        this. age = age;
+    public void stop() {
+        System.out.println("[Car] --- stop");
     }
 }
 ```
 
-위의 클래스 Teacher과 Student는 School의 `schoolName`과 `location`을 상속받아 아래와 같이 `schoolName`과 `location`을 가지고 있는 것 처럼 사용할 수 있다.
+<br/>
 
+**CarA.java**
 ```java
-public class Main {
-    public static void main(String[] args){
-        School school = new School("신사초등학교", "서울");
-        Teacher teacher = new Teacher(school, "홍길동", 30);
-        Student student = new Student(school, "김철수", 9);
+public class CarA extends Car{
 
-        System.out.println(teacher.getSchoolName());
-        System.out.println(student.getSchoolName());
+    public CarA(int wheel, String color, String model) {
+        super(wheel, color);
+        this.model = model;
     }
 }
 ```
+
+<br/>
+
+**CarB.java**
+```java
+public class CarB extends Car{
+
+    public CarB(int wheel, String color, String model) {
+        super(wheel, color);
+        this.model = model;
+    }
+}
 ```
-결과화면
-신사초등학교
-신사초등학교
-```
+
+CarA 와 CarB 의 공통적으로 포함하는 부분은 wheel(바퀴), color(색)이다.  
+따라서 위의 공통적인 부분을 Car으로 묶고 CarA와 CarB는 Car을 상속하고, 나머지를 구현하는 것이 코드의 중복과 수정을 줄일 수 있는 방법이다.
 
 <br/>
 
@@ -162,34 +153,15 @@ super.x = 10
 `super()` 는 부모 클래스의 생성자를 호출하는데 사용된다.
 
 ```java
-public class School {
-    String schoolName;
-    String location;
+public class CarA extends Car{
 
-    School(String schoolName, String location){
-        this.schoolName = schoolName;
-        this.location = location;
-    }
-
-    public String getSchoolName(){ 
-        return schoolName;
-    }
-}
-```
-```java
-public class Teacher extends School{
-    String teacherName;
-    int age;
-
-    Teacher(School school, String teacherName, int age) {
-        super(school.schoolName, school.location);
-        this.teacherName = teacherName;
-        this. age = age;
+    public CarB(int wheel, String color) {
+        super(wheel, color);
     }
 }
 ```
 
-`Teacher` 은 `super(school.schoolName, school.location)` 을 사용하여 부모 클래스의 생성자를 호출하였다.
+`CarA` 은 `super(wheel, color)` 을 사용하여 부모 클래스의 생성자를 호출하였다.
 
 위와 같이 부모 클래스가 매개 변수가 있는 생성자만 있다면 반드시 자식 클래스 생성자에서는 `super(매개값, ...)` 을 호출해야한다.
 
@@ -224,67 +196,58 @@ public class Teacher extends School{
 * **부모 클래스의 메서드보다 많은 수의 예외를 선언할 수 없다.**
 
 ```java
-public class School {
-    String schoolName;
-    String location;
+public class CarB extends Car{
 
-    School(String schoolName, String location){
-        this.schoolName = schoolName;
-        this.location = location;
-    }
-
-    public void method1(){
-        System.out.println("parent 입니다");
-    }
-}
-```
-
-```java
-public class Student extends School{
-    String studentName;
-    int age;
-
-    Student(School school, String studentName, int age) {
-        super(school.schoolName, school.location);
-        this.studentName = studentName;
-        this. age = age;
+    public CarB(int wheel, String color) {
+        super(wheel, color);
     }
 
     @Override
-    public void method1() {
-        System.out.println("child 입니다");
+    public void drive() {
+        System.out.println("[CarB] --- drive");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("[CarB] --- stop");
     }
 }
+
 ```
 
 <br/>
 
 ## 💡 6-4 다이나믹 메소드 디스패치 (Dynamic Method Dispatch)
 
-다이나믹 메소드 디스패치를 설명하기에 앞서 메소드 디스패치에 대해 설명하려고 한다. 
+자바는 객체지향 프로그래밍언어로서 객체들간의 메시지 전송을 기반으로 문제를 해결해나간다.
 
-**메소드 디스패치**는 어떤 메소드를 호출할 지 결정하여 실제로 실행시키는 과정을 말한다. 이런 메소드 디스패치에는 다음과 같은 세 가지가 존재한다.
-  * 정적 메소드 디스패치(Static Method Dispatch)
-  * 동적 메소드 디스패치(Dynamic Method Dispatch)
-  * 더블 디스패치(Double Dispatch)
+메세지 전송이라는 표현은 결국 메서드를 호출하는 것인데, 이것을 디스패치(dispatch)라고 부른다.
+
+ 디스패치(dispatch)는 정적 디스패치(static dispatch)와 동적 디스패치(dynamic dispatch)가 있는데 
+
+정적(static)은 구현 클래스를 이용해 컴파일 시점에서부터 어떤 메서드가 호출될 지 정해져 있는 것이고,
+
+동적(dynamic(은 인터페이스를 이용해 참조함으로서 호출되는 메서드가 동적으로 정해지는 것을 의미한다.
 
 <br/>
 
 ### 📌 **정적 메소드 디스패치(Static Method Dispatch)**
 
+
+
 ```java
-public class School {
+public class Parent {
     public void method1(){
-        System.out.println("School의 method1입니다");
+        System.out.println("Parent method1입니다");
     }
 }
 ```
 
 ```java
-public class Student extends School{
+public class Child extends Parent{
     @Override
     public void method1() {
-        System.out.println("Student의 method1입니다");
+        System.out.println("Child method1입니다");
     }
 }
 ```
@@ -292,32 +255,39 @@ public class Student extends School{
 ```java
 public class Main {
     public static void main(String[] args){
-        Student student = new Student(school, "김철수", 9);
-        student.method1(); //정적 메소드 디스패치
+        Child child = new Child();
+        child.method1(); //동적 메소드 디스패치
     }
 }
 ```
 
 위의 코드는 `Student` 클래스의 `method1` 메소드는 부모 클래스 `School` 의 `method1`을 오버라이딩을 하였다.  
-`Main` 클래스에서 `student.method1()`을 호출했을 때 `Student` 타입의 객체를 생성했기 때문에 우리는 `Student` 클래스의 오버라이딩 된 함수가 불릴 것을 알고 있다. 우리가 이미 알고 있는 것과 같이 **컴파일러 역시도 이 메소드를 호출하고 실행시켜야되는 것을 명확하게 알고 있는데 우리는 이를 정적 메소드 디스패치**라 부른다.
+
+`Main` 클래스에서 `student.method1()`을 호출했을 때 `Student` 타입의 객체를 생성했기 때문에 우리는 `Student` 클래스의 오버라이딩 된 함수가 불릴 것을 알고 있다. 
+
+**자바에서 객체 생성은 Runtime 시에 호출된다. 즉, 컴파일 시점에 알 수 있는 것은 타입에 대한 정보이다.**
+
+따라서 컴파일러 역시 이 메소드를 호출하고 실행시켜야되는 것을 명확하게 알고 있다.
+
+우리는 이를 정적 메소드 디스패치라 부른다.
 
 </br>
 
 ### 📌 **다이나믹 메소드 디스패치 (Dynamic Method Dispatch)**
 
 ```java
-public class School {
+public class Parent {
     public void method1(){
-        System.out.println("School의 method1입니다");
+        System.out.println("Parent method1입니다");
     }
 }
 ```
 
 ```java
-public class Teacher extends School{
+public class Child extends Parent{
     @Override
     public void method1() {
-        System.out.println("Teacher의 method1입니다");
+        System.out.println("Child method1입니다");
     }
 }
 ```
@@ -325,21 +295,25 @@ public class Teacher extends School{
 ```java
 public class Main {
     public static void main(String[] args){
-        School teacher = new Teacher(school, "홍길동", 30);
-        teacher.method1(); //동적 메소드 디스패치
+        Parent parent = new Child();
+        parent.method1(); //동적 메소드 디스패치
     }
 }
 ```
 
-```
-결과화면
-Teacher의 method1입니다
-```
-자바에서는 위와 같은 `School teacher = new Teacher();` 과 같은 객체의 생성과 바인딩을 허락한다.  
-이 코드에서 `teacher.method1()` 을 사용하면 어떤 메소드가 호출될까?  
-`teacher` 객체는 `School` 이라는 클래스 타입이다. 따라서 `Teacher` 클래스를 할당할지라도 `Teacher` 클래스의 `method1`에 접근할 수가 없다. `School` 객체이기 때문이다.  
-즉, '현재 바인딩 되어 있는 클래스가 무엇인지 모른다'고 할 수 있다.  
-**이처럼  컴파일러가 어떤 메소드를 호출해야되는지 모르는 것을 우리는 동적 메소드 디스패치라고 부른다.**
+자바에서는 위와 같은 `Parent parent = new Child()` 과 같은 객체의 생성과 바인딩을 허락한다.  
+
+이 코드에서 `parent.method1()` 을 사용하면 어떤 메소드가 호출될까?  
+
+위에서 말했던 것처럼 컴파일러는 타입만 체크한다.
+
+따라서 `parent` 객체는 `Parent` 이라는 클래스 타입이기 때문에 `Child` 클래스를 할당할지라도 `Child` 클래스의 `method1`에 접근할 수가 없다. `Parent` 객체이기 때문이다.
+
+하지만 결과는 `Child` 클래스의 `method1()` 이 호출된다.
+
+그 이유는 컴파일러가 어떤 메소드를 호출해야되는지 모르지만 런타임에 정해져서 메서드를 호출하기 때문이다. 
+
+이를 동적 메소드 디스패치라고 부른다.
 
 <br/>
 
@@ -394,6 +368,19 @@ abstract 리턴타입 메서드이름();
 
 ### 📌 **final 메소드**
 변경될 수 없는 메서드, final로 지정된 메서드는 오버라이딩을 통해 재정의 될 수 없다.
+
+<br/>
+
+### 📌 **final을 언제 사용해야힐까?**
+final을 쓰던, 안쓰던 코드를 이해하고 작성하면 문제없이 코딩이 가능하다.
+
+그러나 다른 사람들과 오해를 최소화하고 도움을 줄 수 있는지 고민하면 좋을 것 같다.
+
+* 개발의 의도를 나타내기 위함
+    * 코드 리뷰 등을 통해 명시적으로 변경, 상속, 확장을 막음으로서 실수를 최소화하고 버그를 줄일 수 있다.
+* 코드의 가독성을 위함.
+
+
 
 <br/>
 
