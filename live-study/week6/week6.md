@@ -3,12 +3,14 @@
 
 <br/>
 
-## ✔ 목표
+# ✔ 목표
 자바의 상속에 대해 학습하세요.
 
 <br/>
 
-## ✔ 목차
+<br/>
+
+# ✔ 목차
 * 자바 상속의 특징
 * super 키워드
 * 메소드 오버라이딩
@@ -19,9 +21,12 @@
 
 <br/>
 
-## 💡 6-1 자바 상속의 특징
+<br/>
+
+
+# 💡 6-1 자바 상속의 특징
     
-### 📌 **상속이란?**
+## **1. 상속이란?**
 객체 지향 프로그램에서는 부모 클래스의 맴버를 자식 클래스에게 물려줄 수 있다. 부모 클래스를 상위(Super) 클래스라고 부르기도 하고, 자식 클래스를 하위(Sub) 클래스, 또는 파생 클래스라고 부른다.
 
 * 상속은 이미 잘 개발된 클래스를 재사용해서 새로운 클래스를 만들기 때문에 **코드의 중복**을 줄여준다.  
@@ -30,7 +35,9 @@
 
 <br/>
 
-### 📌 **상속 구현**
+<br/>
+
+## **2. 상속 구현**
 
 자바에서 상속의 구현은 다음과 같다. 새로 작성하고자 하는 클래스 이름 뒤에 상속받고자 하는 클래스의 이름을 키워드 `extends`와 함께 작성해주면 된다. 
 
@@ -86,7 +93,10 @@ CarA 와 CarB 의 공통적으로 포함하는 부분은 wheel(바퀴), color(�
 
 <br/>
 
-### 📌 **단일 상속**
+<br/>
+
+
+## **3. 단일 상속**
 다른 언어와는 달리 자바는 **다중 상속을 허용하지 않는다**. 그러므로 다음과 같이 `extends` 뒤에는 단 하나의 부모 클래스만 와야한다.
 ```java
 //불가능
@@ -99,7 +109,10 @@ public class 자식클래스 extends 부모클래스1 { ... }
 
 <br/>
 
-### 📌 **최상위 클래스 Object**
+<br/>
+
+
+## **4. 최상위 클래스 Object**
 자바의 모든 클래스는 최상위 클래스 Object의 서브 클래스이다.
 
 ```java
@@ -114,9 +127,14 @@ public class Main {
 
 <br/>
 
-## 💡 6-2 super 키워드
+<br/>
 
-### 📌 **super**
+<br/>
+
+
+# 💡 6-2 super 키워드
+
+## **1. super**
 
 super는 자식 클래스에서 부모 클래스로부터 상속받은 멤버를 참조하는데 사용되는 참조 변수이다. 생성자에서 멤버변수와 매개 변수의 이름이 같을 때 `this` 를 붙여서 구별했듯이 상속받은 멤버와 자신의 클래스에 정의된 멤버의 이름이 같을 때는 `super` 를 붙여서 구별할 수 있다.  
 
@@ -146,7 +164,10 @@ super.x = 10
 
 <br/>
 
-### 📌 **super()**
+<br/>
+
+
+## **2. super()**
 
 자바에서 자식 객체를 생성하면, 부모 객체가 먼저 생성되고 자식 객체가 그 다음에 생성된다. 
 
@@ -171,15 +192,24 @@ public class CarA extends Car{
 
 <br/>
 
-## 💡 6-3 메소드 오버라이딩
+<br/>
 
-### 📌 **메소드 오버라이딩이란?**
+
+<br/>
+
+
+# 💡 6-3 메소드 오버라이딩
+
+## **1. 메소드 오버라이딩이란?**
 
 매소드 오버라이딩(@Override)은 상속된 메소드의 내용이 자식 클래스에 맞지 않을 경우, 자식 클래스에서 동일한 메소드를 재정의하는 것을 말한다.
 
 <br/>
 
-### 📌 **메소드 오버라이딩 조건**
+<br/>
+
+
+## **2. 메소드 오버라이딩 조건**
 
 오버라이딩은 메서드의 내용만을 새로 작성하는 것이므로 메서드의 선언부는 부모의 것과 완전히 일치해야 한다. 따라서 다음 조건을 만족해야한다.
   * 부모의 메소드와 동일한 시그너처(리턴 타입, 메소드 이름, 매개 변수 리스트)를 가져야 한다.
@@ -217,7 +247,13 @@ public class CarB extends Car{
 
 <br/>
 
-## 💡 6-4 다이나믹 메소드 디스패치 (Dynamic Method Dispatch)
+<br/>
+
+
+<br/>
+
+
+# 💡 6-4 다이나믹 메소드 디스패치 (Dynamic Method Dispatch)
 
 자바는 객체지향 프로그래밍언어로서 객체들간의 메시지 전송을 기반으로 문제를 해결해나간다.
 
@@ -231,7 +267,10 @@ public class CarB extends Car{
 
 <br/>
 
-### 📌 **정적 메소드 디스패치(Static Method Dispatch)**
+<br/>
+
+
+## **1. 정적 메소드 디스패치(Static Method Dispatch)**
 
 
 
@@ -261,9 +300,9 @@ public class Main {
 }
 ```
 
-위의 코드는 `Student` 클래스의 `method1` 메소드는 부모 클래스 `School` 의 `method1`을 오버라이딩을 하였다.  
+위의 코드에서 `Child` 클래스의 `method1` 메소드는 부모 클래스 `Parent` 의 `method1`을 오버라이딩을 하였다.  
 
-`Main` 클래스에서 `student.method1()`을 호출했을 때 `Student` 타입의 객체를 생성했기 때문에 우리는 `Student` 클래스의 오버라이딩 된 함수가 불릴 것을 알고 있다. 
+`Main` 클래스에서 `child.method1()`을 호출했을 때 `Child` 타입의 객체를 생성했기 때문에 우리는 `Child` 클래스의 오버라이딩 된 함수가 불릴 것을 알고 있다. 
 
 **자바에서 객체 생성은 Runtime 시에 호출된다. 즉, 컴파일 시점에 알 수 있는 것은 타입에 대한 정보이다.**
 
@@ -271,9 +310,12 @@ public class Main {
 
 우리는 이를 정적 메소드 디스패치라 부른다.
 
-</br>
+<br/>
 
-### 📌 **다이나믹 메소드 디스패치 (Dynamic Method Dispatch)**
+<br/>
+
+
+## **2. 다이나믹 메소드 디스패치 (Dynamic Method Dispatch)**
 
 ```java
 public class Parent {
@@ -315,11 +357,281 @@ public class Main {
 
 이를 동적 메소드 디스패치라고 부른다.
 
+</br>
+
 <br/>
 
-## 💡 6-5 추상 클래스
 
-### 📌 **추상 클래스란?**
+## **3. 더블 디스패치 (Double Dispatch)**
+
+동적 디스패치를 두 번하는 기법이다.
+
+<BR/>
+
+참고 :  www.bsidesoft.com/2843
+
+4가지 조합이 나오는 추상 Post레벨과 이를 활용하는 SNS레벨간의 조합처리되는 예제이다.
+
+<br/>
+
+<br/>
+
+### **[1] 구현체에 따라 로직이 다르지 않은 경우**
+
+```java
+interface Post {
+    void postOn(SNS sns);
+}
+
+class Text implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        System.out.println("text -> " + sns.getClass().getSimpleName());
+    }
+}
+
+class Picture implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        System.out.println("picture -> " + sns.getClass().getSimpleName());
+    }
+}
+
+interface SNS {}
+
+class FaceBook implements SNS {}
+
+class Twitter implements SNS {}
+
+public class DynamicTest {
+    public static void main(String[] args) {
+        List<Post> posts = Arrays.asList(new Text(), new Picture());
+        List<SNS> sns = Arrays.asList(new FaceBook(), new Twitter());
+
+        posts.forEach(p-> {
+            sns.forEach(p::postOn);
+        });
+    }
+}
+```
+* SNS 구현체에 따라 로직이 달라지는 경우를 고려하지 않았다.
+
+<br/>
+
+<br/>
+
+### **[2] SNS의 구현체에 따라 로직이 다른 경우 (분기문 사용)**
+
+
+```java
+interface Post {
+    void postOn(SNS sns);
+}
+
+class Text implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        if(sns instanceof Facebook){
+            System.out.println("text -> facebook");
+        }
+        if(sns instanceof Twitter){
+            System.out.println("text -> twitter");
+        }
+    }
+}
+
+class Picture implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        if(sns instanceof Facebook){
+            System.out.println("picture -> facebook");
+        }
+        if(sns instanceof Twitter){
+            System.out.println("picture -> twitter");
+        }
+    }
+}
+
+interface SNS {}
+
+class FaceBook implements SNS {}
+
+class Twitter implements SNS {}
+
+class GooglePlus implements SNS{}
+
+public class DynamicTest {
+    public static void main(String[] args) {
+        List<Post> posts = Arrays.asList(new Text(), new Picture());
+        List<SNS> sns = Arrays.asList(new FaceBook(), new Twitter());
+
+        posts.forEach(p-> {
+            sns.forEach(p::postOn);
+        });
+    }
+}
+```
+
+* SNS의 새로운 구현체가 생기면 분기문을 추가해야한다.
+
+* 만약 실수로 분기문을 추가하지 않으면 의도치 않게 exception이 발생한다.
+
+<br/>
+
+<br/>
+
+### **[3] SNS의 구현체에 따라 로직이 다른 경우 (메소드 오버로딩 사용 static dispatch)**
+
+```java
+interface Post {
+    void postOn(Facebook sns);
+    void postOn(Twitter sns);
+}
+
+class Text implements Post{
+    public void postOn(Facebook sns){
+      System.out.println("text -> facebook");
+    }
+    public void postOn(Twitter sns){
+      System.out.println("text -> twitter");
+    }
+}
+
+class Picture implements Post{
+    public void postOn(Facebook sns){
+      System.out.println("picture -> facebook");
+    }
+    public void postOn(Twitter sns){
+      System.out.println("picture -> twitter");
+    }
+}
+
+interface SNS {}
+
+class FaceBook implements SNS {}
+
+class Twitter implements SNS {}
+
+class GooglePlus implements SNS{}
+
+public class DynamicTest {
+    public static void main(String[] args) {
+        List<Post> posts = Arrays.asList(new Text(), new Picture());
+        List<SNS> sns = Arrays.asList(new FaceBook(), new Twitter(), new GooglePlus());
+
+        posts.forEach(p-> {
+            sns.forEach(s -> p.postOn(s)); //컴파일 에러 발생
+        });
+    }
+}
+```
+
+* 메소드 오버로딩은 static dispatch 이므로 컴파일 시점에 어떤 클래스의 메소드를 수행할지 알아야한다.
+  
+* 하지만 s는 SNS라는 interface의 타입이기 때문에 어떤 구현체(Facebook, Twitter 등)의 타입인지 컴파일러가 알 수 없다.
+
+* 따라서 **컴파일 에러 발생**
+
+<br/>
+
+<br/>
+
+### **더블 디스패치 사용**
+
+```java
+interface Post {
+    void postOn(SNS sns);
+}
+
+class Text implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        sns.post(this);
+    }
+}
+
+class Picture implements Post{
+    @Override
+    public void postOn(SNS sns) {
+        sns.post(this);
+    }
+}
+```
+
+```java
+interface SNS {
+    void post(Text text);
+    void post(Picture picture);
+}
+
+class FaceBook implements SNS {
+
+    @Override
+    public void post(Text text) {
+        System.out.println(text.getClass().getSimpleName() + " ->" + this.getClass().getSimpleName());
+    }
+
+    @Override
+    public void post(Picture picture) {
+        System.out.println(picture.getClass().getSimpleName() + " ->" + this.getClass().getSimpleName());
+    }
+}
+
+class Twitter implements SNS {
+
+    @Override
+    public void post(Text text) {
+        System.out.println(text.getClass().getSimpleName() + " ->" + this.getClass().getSimpleName());
+    }
+
+    @Override
+    public void post(Picture picture) {
+        System.out.println(picture.getClass().getSimpleName() + " ->" + this.getClass().getSimpleName());
+    }
+}
+```
+
+```java
+public class DynamicTest {
+    public static void main(String[] args) {
+        List<Post> posts = Arrays.asList(new Text(), new Picture());
+        List<SNS> sns = Arrays.asList(new FaceBook(), new Twitter());
+
+        posts.forEach(p-> {
+            sns.forEach(p::postOn);
+        });
+    }
+}
+```
+
+* 두 번의 다이나믹 디스패치를 사용했다.
+  
+    * Post 중 어떤 구현체의 postOn 메소드를 실행할지 dynamic dispatch 한 번 사용
+    * postOn 메소드 내부에서 SNS 중 어떤 구현체의 post 메소드를 실행할지 dynamic dispatch 한 번 사용 
+
+* 새로운 구현체가 생기면 다음 코드만 추가하면 된다.
+    ```java
+    class Instagram implements SNS {
+        public void post(Text text) {
+            // text -> instagram
+        }
+        public void post(Picture picture) {
+            // picture -> instagram
+        }
+    }
+    ```
+* 구현체를 추가할때 기존의 코드를 수정하지 않고 자유롭게 추가할 수 있다. (SNS의 구현체에 따라 로직을 분리할 수 있다.) 
+
+<br/>
+
+<br/>
+
+
+<br/>
+
+# 💡 6-5 추상 클래스
+
+## **1. 추상 클래스란?**
 
 ```java
 abstract class 클래스이름{
@@ -336,7 +648,10 @@ abstract class 클래스이름{
 
 <br/>
 
-### 📌 **추상 메서드란?**
+<br/>
+
+
+## **2. 추상 메서드란?**
 
 ```java
 abstract 리턴타입 메서드이름();
@@ -350,9 +665,15 @@ abstract 리턴타입 메서드이름();
 
 <br/>
 
-## 💡 6-6 final 키워드
+<br/>
 
-### 📌 **final 필드**
+
+<br/>
+
+
+# 💡 6-6 final 키워드
+
+## **1. final 필드**
 변수 앞에 `final` 이 붙으면, 값을 변경할 수 없는 상수가 된다.
 
 `final` 이 붙은 변수는 상수이므로 일반적으로 선언과 동시에 초기화를 동시에 하지만, 인스턴스 변수의 경우 생성자에서 초기화 되도록 할 수 있다.
@@ -361,17 +682,26 @@ abstract 리턴타입 메서드이름();
 
 <br/>
 
-### 📌 **final 클래스**
+<br/>
+
+
+## **2. final 클래스**
 변경될 수 없는 클래스, 확장될 수 없는 클래스가 된다. 따라서 final로 지정된 클래스는 다른 클래스의 부모가 될 수 없다.
 
 <br/>
 
-### 📌 **final 메소드**
+<br/>
+
+
+## **3.final 메소드**
 변경될 수 없는 메서드, final로 지정된 메서드는 오버라이딩을 통해 재정의 될 수 없다.
 
 <br/>
 
-### 📌 **final을 언제 사용해야힐까?**
+<br/>
+
+
+## **4. final을 언제 사용해야힐까?**
 final을 쓰던, 안쓰던 코드를 이해하고 작성하면 문제없이 코딩이 가능하다.
 
 그러나 다른 사람들과 오해를 최소화하고 도움을 줄 수 있는지 고민하면 좋을 것 같다.
@@ -384,7 +714,13 @@ final을 쓰던, 안쓰던 코드를 이해하고 작성하면 문제없이 코�
 
 <br/>
 
-## 💡 6-7 Object 클래스
+
+<br/>
+
+
+<br/>
+
+# 💡 6-7 Object 클래스
 
 `java.lang.Object` 클래스는 모든 클래스의 최상위 클래스이다.
 
@@ -402,6 +738,64 @@ void wait() | 스레드를 일시적으로 중지할 때 호출한다.
 void wait(long timeout) | 주어진 시간만큼 스레드를 일시적으로 중지할 때 호출한다.
 
 <br/>
+
+<br/>
+
+
+## **toString()**
+
+* **기본동작** : 객체의 해시코드를 출력한다. 
+
+* **Override 목적** : 객체의 정보를 문자열 형태로 표현하고자 할 때
+
+* **toString() 의 원형은 아래와 같다.**
+    ```java
+    getClass().getName() + '@' + Integer.toHexString(hashCode())
+    ```
+
+
+<br/>
+
+
+<br/>
+
+## **equals()**
+
+* **기본동작** : '==' 연산 결과 반환, 물리적 동일함을 확인
+
+* **override 목적** : 물리적으로 다른 메모리에 위치하는 객체여도 논리적으로 동일함을 구현하기 위함 equals()를 사용해 두 객체의 동일함을 논리적으로 override할 수 있다. 
+
+* **'물리적 동일함'** - 객체가 메모리에서 같은 주소값을 갖는 것을 의미
+
+* **'논리적 동일함'** - 물리적으로는 다른 위치에 있지만 같은 id의 회원객체, 같은 id의 주문객체와 같이 도메인을 구분할 수 있는 고유한 값 등에 의해 동일한 것을 의미
+
+<br/>
+
+
+<br/>
+
+## **hashCode()**
+
+* **기본동작 :** JVM이 부여한 코드값. 인스턴스가 저장된 가상머신의 주소를 10진수로 반환한다.
+
+* **override 목적** : 두 개의 서로 다른 메모리에 위치한 객체가 동일성을 갖기 위함.
+
+* **해시코드란,** jvm이 인스턴스를 생성할 때 메모리 주소를 변환해서 부여하는 코드.
+
+  * 실제 메모리 주소값과는 별개의 값이며 실제 메모리 주소는 System 클래스의 identityHashCode()로 확인할 수 있다.
+
+* **자바에서의 동일성**
+
+    * equals()의 반환값이 true, hashCode() 반환값이 동일함을 의미한다. 보통 equals()와 hashCode()는 함께 override 한다.
+
+<br/>
+
+
+<br/>
+
+
+<br/>
+
 
 # 참고
 * 이것이 자바다 - 신용권

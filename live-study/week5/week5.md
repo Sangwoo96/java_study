@@ -161,6 +161,7 @@ int getSpeed() { ... }
     * **메소드 오버라이딩**
       * 메소드 오버라이딩은 상위 클래스가 정의한 메소드를 하위 클래스가 가져와 변경하거나 확장하는 기법, 즉 하위 클래스에서 메소드를 재정의하는 기법이다.
 
+
 <br/>
 
 # 💡 5-4 생성자 정의하는 방법
@@ -229,6 +230,25 @@ Car(String model){
     this("company", model, 10);
 }
 ```
+
+<br/>
+
+# 💡 추가) Method Signature, Method Type
+
+Method Signature 는 그것만으로 메소드를 구분지을 수 있는 근거가 되어야 한다.
+
+자바에서 메서드 시그니처는 **메서드명, 인자**이다.
+
+```java
+public class Signature {
+    void method(int a){}
+    void method(String a) {} // 정상 작동
+    void method(int a, int b) {} // 정상 작동
+    int method(int a) {} //컴파일 에러 발생
+}
+```
+
+위의 코드를 보면 정확히는 **인자의 타입, 갯수, 메서드명**이 메서드 시그니처라는 것을 알 수 있다. 리턴 타입은 포함되지 않는다.
 
 <br/>
 
