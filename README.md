@@ -19,16 +19,16 @@
   * [클래스](https://github.com/highright96/java_study/blob/main/live-study/week5/week5.md)
   * [BinaryTree](https://github.com/highright96/java_study/blob/main/live-study/week5/week5%20-%20BinaryTree.md)
 * 6주차
-  * [상속](https://github.com/highright96/java-study/blob/main/live-study/week6/week6.md)
+  * [상속](https://github.com/highright96/java-livestudy/blob/main/live-study/week6/week6.md)
 * 7주차
-  * [패키지](https://github.com/highright96/java-study/blob/main/live-study/week7/week7.md)
+  * [패키지](https://github.com/highright96/java-livestudy/blob/main/live-study/week7/week7.md)
 * 8주차
-  * [인터페이스](https://github.com/highright96/java-study/blob/main/live-study/week8/week8.md) 
+  * [인터페이스](https://github.com/highright96/java-livestudy/blob/main/live-study/week8/week8.md) 
 * 9주차
-  * [예외 처리](https://github.com/highright96/java-study/blob/main/live-study/week9/week9.md)
+  * [예외 처리](https://github.com/highright96/java-livestudy/blob/main/live-study/week9/week9.md)
 * 10주차
-  * [멀티스레드 프로그래밍](https://github.com/highright96/java-study/blob/main/live-study/week10/week10.md)
+  * [멀티스레드 프로그래밍](https://github.com/highright96/java-livestudy/blob/main/live-study/week10/week10.md)
 * 11주차
-  * [Enum](https://github.com/highright96/java-study/blob/main/live-study/week11/week11.md)
+  * [Enum](https://github.com/highright96/java-livestudy/blob/main/live-study/week11/week11.md)
 * 12주차
-  * [Annotation](https://github.com/highright96/java-study/blob/main/live-study/week12/week12.md)
+  * [Annotation](https://github.com/highright96/java-livestudy/blob/main/live-study/week12/week12.md)
